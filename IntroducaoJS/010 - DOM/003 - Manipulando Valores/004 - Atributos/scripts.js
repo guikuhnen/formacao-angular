@@ -17,6 +17,13 @@ div.setAttribute("class", `${divClass} active`);
 
 console.log(div);
 
+divId.classList.add("Teste2");
+divId.classList.remove("Teste2");
+divId.classList.toggle("Teste2");
+
+console.log(divId.classList.contains("Teste2"));
+console.log(divId.className);
+
 //////////////////////////////////////////////////////////////////
 
 // dom [principal]
