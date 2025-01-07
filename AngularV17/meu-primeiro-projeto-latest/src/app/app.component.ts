@@ -9,8 +9,16 @@ import { NewComponent } from './components/new-component/new-component.component
   template: `
     <router-outlet />
     <h1>Curso de Angular</h1>
-    <app-new-component />
+    <div class="theme-dark">
+      <app-new-component />
+    </div>
   `,
-  styles: [``],
+  styles: [
+    `
+      h1 {
+        color: red;
+      }
+    `,
+  ],
 })
 export class AppComponent {}

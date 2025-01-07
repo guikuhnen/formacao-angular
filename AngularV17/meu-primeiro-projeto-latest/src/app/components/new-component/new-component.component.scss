@@ -1,0 +1,23 @@
+:host {
+    h2 {
+        background: blue;
+    }
+}
+
+// ignorado
+h2 {
+    background: purple;
+}
+
+:host-context(.theme-dark) {
+  h2 {
+    background: black;
+    color: white;
+  }
+}
+
+::ng-deep {
+    .theme-dark {
+        border: 5px solid blue;
+    }
+}
