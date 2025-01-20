@@ -1,0 +1,126 @@
+<h2>Control Flow</h2>
+
+<h3>IF</h3>
+<!-- Control Flow v17 -->
+@if (isTrue) {
+<p>Sim isTrue Control</p>
+} @else {
+<p>Não está correto</p>
+}
+
+<!-- Directives v15 -->
+<ng-container *ngIf="isTrue; else isFalse">
+  <p>Sim isTrue Directives</p>
+</ng-container>
+<ng-template #isFalse>
+  <p>Não está correto</p>
+</ng-template>
+
+<h3>For</h3>
+
+<p>Control</p>
+<!-- Control Flow v17 -->
+@if (loadingData$ | async; as data) {
+<ul>
+  @for (item of data; track item) {
+  <li>{{ item }} - {{ $index }}</li>
+  }
+</ul>
+} @else {
+<p>Loading...</p>
+}
+
+<p>Directives</p>
+<!-- Directives v15 -->
+<ng-container *ngIf="loadingData$ | async as data; else loading">
+  <ul>
+    <ng-container *ngFor="let item of data; trackBy: trackByFn">
+      <li>{{ item }}</li>
+    </ng-container>
+  </ul>
+</ng-container>
+<ng-template #loading><p>Loading...</p></ng-template>
+
+<h3>For valores</h3>
+
+<p>Control</p>
+<!-- Control Flow v17 -->
+@for ( item of items; track item.name; let i = $index; let c = $count; let f = $first; let l = $last; let e = $even; let o = $odd; ) {
+<p>
+  name: {{ item.name }} - index: {{ i }} - count: {{ c }} - first: {{ f }} - last: {{ l }} - even: {{ e }} - odd: {{ o }}
+</p>
+}
+
+<p>Directives</p>
+<!-- Directives v15 -->
+<ng-container
+  *ngFor="
+    let item of items;
+    let i = index;
+    let c = count;
+    let f = first;
+    let l = last;
+    let e = even;
+    let o = odd;
+    trackBy: trackByFn
+  "
+>
+  <p>
+    name: {{ item.name }} - index: {{ i }} - count: {{ c }} - first: {{ f }} - last: {{ l }} - even: {{ e }} - odd: {{ o }}
+  </p>
+</ng-container>
+
+<label for="name">Name </label>
+<input type="text" name="name" id="name" #name />
+<button type="button" (click)="addNewName(name.value)">Add Name</button>
+
+<h3>For empty</h3>
+
+<p>Control</p>
+<!-- Control Flow v17 -->
+<ul>
+  @for (item of itemsEmpty; track item.name) {
+  <li>{{ item.name }}</li>
+  } @empty {
+  <li>No items</li>
+  }
+</ul>
+
+<p>Directives</p>
+<!-- Directives v15 -->
+<ul>
+  <ng-container *ngIf="itemsEmpty.length === 0; else itensExist">
+    <li>No items</li>
+  </ng-container>
+  <ng-template #itensExist>
+    <ng-container *ngFor="let item of itemsEmpty; trackBy: trackByFn">
+      <li>{{ item.name }}</li>
+    </ng-container>
+  </ng-template>
+</ul>
+
+<h3>Switch case</h3>
+
+<p>Control</p>
+<!-- Control Flow v17 -->
+@switch (switchCondition) { @case ('A') {
+<p>Sim sua letra é: A</p>
+} @case ('B') {
+<p>Sim sua letra é: B</p>
+} @default {
+<p>Não está correto</p>
+} }
+
+<p>Directives</p>
+<!-- Directives v15 -->
+<ng-container [ngSwitch]="switchCondition">
+  <ng-container *ngSwitchCase="'A'">
+    <p>Sim sua letra é: A</p>
+  </ng-container>
+  <ng-container *ngSwitchCase="'B'">
+    <p>Sim sua letra é: B</p>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <p>Não está correto</p>
+  </ng-container>
+</ng-container>
