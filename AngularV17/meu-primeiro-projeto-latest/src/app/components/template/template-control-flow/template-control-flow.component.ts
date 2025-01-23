@@ -18,11 +18,11 @@ export class TemplateControlFlowComponent {
     'data3',
   ]).pipe(delay(3000));
 
-  public items: Array<{ name: string }> = [{ name: 'Guilherme' } ];
+  public items: Array<{ name: string }> = [{ name: 'Guilherme' }];
   public itemsEmpty: Array<{ name: string }> = [];
 
   public switchCondition: string = 'A';
-  
+
   public trackByFn(index: number): number {
     return index;
   }

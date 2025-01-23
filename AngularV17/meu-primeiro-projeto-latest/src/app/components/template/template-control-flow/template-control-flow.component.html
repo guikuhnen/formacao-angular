@@ -39,22 +39,25 @@
     </ng-container>
   </ul>
 </ng-container>
-<ng-template #loading><p>Loading...</p></ng-template>
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>
 
 <h3>For valores</h3>
 
 <p>Control</p>
 <!-- Control Flow v17 -->
-@for ( item of items; track item.name; let i = $index; let c = $count; let f = $first; let l = $last; let e = $even; let o = $odd; ) {
+@for ( item of items; track item.name; let i = $index; let c = $count; let f = $first; let l = $last; let e = $even; let
+o = $odd; ) {
 <p>
-  name: {{ item.name }} - index: {{ i }} - count: {{ c }} - first: {{ f }} - last: {{ l }} - even: {{ e }} - odd: {{ o }}
+  name: {{ item.name }} - index: {{ i }} - count: {{ c }} - first: {{ f }} - last: {{ l }} - even: {{ e }} - odd: {{ o
+  }}
 </p>
 }
 
 <p>Directives</p>
 <!-- Directives v15 -->
-<ng-container
-  *ngFor="
+<ng-container *ngFor="
     let item of items;
     let i = index;
     let c = count;
@@ -63,10 +66,10 @@
     let e = even;
     let o = odd;
     trackBy: trackByFn
-  "
->
+  ">
   <p>
-    name: {{ item.name }} - index: {{ i }} - count: {{ c }} - first: {{ f }} - last: {{ l }} - even: {{ e }} - odd: {{ o }}
+    name: {{ item.name }} - index: {{ i }} - count: {{ c }} - first: {{ f }} - last: {{ l }} - even: {{ e }} - odd: {{ o
+    }}
   </p>
 </ng-container>
 
