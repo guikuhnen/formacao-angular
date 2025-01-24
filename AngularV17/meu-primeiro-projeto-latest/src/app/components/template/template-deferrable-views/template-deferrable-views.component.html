@@ -1,0 +1,27 @@
+<!-- <h2 style="margin-bottom: 5000px;">Deferrable Views</h2> -->
+<h2 #trigger>Deferrable Views</h2>
+<!-- <h2>Deferrable Views</h2> -->
+
+<!-- defer = on (idle [padrão], timer [s, ms], viewport[ao ser visualizado], interaction, hover, immediate [espera carregar o componente], prefetch [pré-carregar, porém mostra em...]) / when (bool) / Ambos sempre OR -->
+
+<!-- @defer (on idle) { -->
+<!-- @defer (on timer(5s)) { -->
+<!-- @defer (on viewport) { -->
+<!-- @defer (on interaction) { -->
+    <!-- @defer (on interaction(trigger)) { -->
+<!-- @defer (on hover) { -->
+<!-- @defer (on immediate) { -->
+<!-- @defer (on interaction; prefetch on idle) { -->
+    <!-- @defer (on timer(5s); prefetch on interaction(trigger)) { -->
+@defer (on interaction(trigger); when isTrue) {
+<!-- @defer (on interaction(trigger); when loadingData$ | async) { -->
+<app-new-component />
+} @placeholder(minimum 1s) {
+<p>Mostrar antes de carregar algo.</p>
+} @loading(after 2s; minimum 5s) {
+<p>Carregando...</p>
+} @error {
+<p>Erro ao carregar.</p>
+}
+
+<button type="button" (click)="isTrue = true">Add True</button>
