@@ -1,0 +1,34 @@
+<h2>Pipes</h2>
+
+<ul>
+  <li>
+    date: {{ date() | date : "dd/MM/yyyy" }}
+  </li>
+  <li>
+    uppercase: {{ "guilherme kuhnen" | uppercase }}
+  </li>
+  <li>
+    lowercase: {{ "GUILHERME KUHNEN" | lowercase }}
+  </li>
+  <li>
+    json: {{ json() | json }}
+  </li>
+  <li>
+    async: {{ loadingData$ | async }}
+  </li>  
+  <li>
+    currency: {{ 200.5 | currency : "BRL" }}
+  </li>  
+  <li>
+    number: {{ 2000.554 | number: "1.0-2" }}
+  </li>
+  <li>
+    percent: {{ 0.155 | percent : "1.0-2" }}
+  </li>
+  <li>
+    customString U: {{ "Guilherme Kuhnen" | customString : "upper" }}
+  </li>
+  <li>
+    customString L: {{ "GUILHERME KUHNEN" | customString : "lower" }}
+  </li>
+</ul>
