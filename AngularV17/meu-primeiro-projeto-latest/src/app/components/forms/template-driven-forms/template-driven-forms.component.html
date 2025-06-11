@@ -1,6 +1,6 @@
 <h2>Template-driven forms</h2>
 
-<form>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <label>
     Nome:
     <input
@@ -50,4 +50,73 @@
   <p>Dirty: {{ sexo.dirty }}</p>
   <p>Touched: {{ sexo.touched }}</p>
   <hr />
+  
+  <hr />
+  
+  <label>
+    Angular:
+    <input
+      type="checkbox"
+      value="Angular"
+      name="checkboxAngular"
+      #techAngular="ngModel"
+      [ngModel]="techAngular.value"
+      required
+    />
+  </label>
+
+  <hr />
+  <p>Value: {{ techAngular.value }}</p>
+  <p>Valid: {{ techAngular.valid }}</p>
+  <p>Dirty: {{ techAngular.dirty }}</p>
+  <p>Touched: {{ techAngular.touched }}</p>
+  <hr />
+  
+  <hr />
+  
+  <label>
+    Vue:
+    <input
+      type="checkbox"
+      value="Vue"
+      name="checkboxVue"
+      #techVue="ngModel"
+      [ngModel]="techVue.value"
+      required
+    />
+  </label>
+
+  <hr />
+  <p>Value: {{ techVue.value }}</p>
+  <p>Valid: {{ techVue.valid }}</p>
+  <p>Dirty: {{ techVue.dirty }}</p>
+  <p>Touched: {{ techVue.touched }}</p>
+  <hr />
+
+  <hr />
+
+  <select name="selectComidas" #comidas="ngModel" ngModel required>
+    <option value="">Selecione uma comida</option>
+    @for (item of listComidas(); track item) {
+    <option [ngValue]="item">{{ item.comida }} - {{ item.preco }}</option>
+    }
+  </select>
+
+  <hr />
+  <p>Value: {{ comidas.value | json }}</p>
+  <p>Comida: {{ comidas.value?.comida }}</p>
+  <p>Preco: {{ comidas.value?.preco }}</p>
+  <p>Valid: {{ comidas.valid }}</p>
+  <p>Dirty: {{ comidas.dirty }}</p>
+  <p>Touched: {{ comidas.touched }}</p>
+  <hr />
+
+  <hr />
+
+  <button [disabled]="!form.valid">Send</button>
 </form>
+
+<p>Value: {{ form.value | json }}</p>
+<p>Valid: {{ form.valid }}</p>
+<p>Dirty: {{ form.dirty }}</p>
+<p>Touched: {{ form.touched }}</p>
