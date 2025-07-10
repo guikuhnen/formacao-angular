@@ -1,12 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidatorFn,
+  Validators,
 } from '@angular/forms';
+
+function textValidaror(): ValidatorFn {
+  return (control: AbstractControl) => {
+    const hasUpperCase = /[A-Z]/.test(control.value);
+    const hasNumber = /[0-9]/.test(control.value);
+
+    if (hasUpperCase && hasNumber) {
+      return null; // Valid
+    } else {
+      return { textValidaror: true }; // Invalid, return an error object
+    }
+  };
+}
 
 @Component({
   selector: 'app-reactive-forms',
@@ -44,22 +60,34 @@ export class ReactiveFormsComponent {
   }
 
   public addFood(newFood: string) {
-   const myFavoriteFoods = this.profileForm.get('myFavoriteFoods') as FormArray;
+    const myFavoriteFoods = this.profileForm.get(
+      'myFavoriteFoods'
+    ) as FormArray;
 
-   const addNewFood = new FormControl<string>(newFood);
+    const addNewFood = new FormControl<string>(newFood);
 
-   myFavoriteFoods.push(addNewFood);
+    myFavoriteFoods.push(addNewFood);
   }
 
   #fb = inject(FormBuilder);
   //constructor(private _fb: FormBuilder) {}
 
   public profileForm: FormGroup = this.#fb.group({
-    name: ['Guilherme'],
+    name: [
+      'Guilherme',
+      [Validators.required, Validators.minLength(3), textValidaror()],
+    ],
     myStacks: this.#fb.group({
       front: ['Angular'],
       back: ['C#'],
     }),
     myFavoriteFoods: this.#fb.array([['Pizza']]),
   });
+
+  public submit() {
+    console.log(this.profileForm.valid);
+    if (this.profileForm.valid) {
+      console.log('Form submitted:', this.profileForm.value);
+    }
+  }
 }
