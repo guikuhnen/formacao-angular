@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 // Components
@@ -13,6 +13,8 @@ import { AngularPipesComponent } from './components/pipes/angular-pipes/angular-
 import { TemplateDrivenFormsComponent } from './components/forms/template-driven-forms/template-driven-forms.component';
 import { ReactiveFormsComponent } from './components/forms/reactive-forms/reactive-forms.component';
 import { ContentComponent } from './components/content/content.component';
+import { HostElementsComponent } from './components/host-elements/host-elements.component';
+import { LifeCycleComponent } from './components/life-cycle/life-cycle.component';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +31,9 @@ import { ContentComponent } from './components/content/content.component';
     AngularPipesComponent,
     TemplateDrivenFormsComponent,
     ReactiveFormsComponent,
-    ContentComponent
+    ContentComponent,
+    HostElementsComponent,
+    LifeCycleComponent,
   ],
   template: `
     <!-- <router-outlet /> -->
@@ -46,7 +50,7 @@ import { ContentComponent } from './components/content/content.component';
     <!-- <app-angular-pipes /> -->
     <!-- <app-template-driven-forms /> -->
     <!-- <app-reactive-forms /> -->
-    <app-content>
+    <!-- <app-content>
       <header id="header">
         <p>Header</p>
       </header>
@@ -55,7 +59,20 @@ import { ContentComponent } from './components/content/content.component';
       <footer class="footer">
         <p>Footer</p>
       </footer>
-    </app-content>
+    </app-content> -->
+    <!-- <app-host-elements /> -->
+    <app-life-cycle [myNumber]="number" />
   `,
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  public number: number = 1;
+
+  //3 - Verifica se entrou dados primeiro, depois inicializa
+  ngOnInit(): void {
+    console.log('3 - AppComponent ngOnInit called');
+    // Simulação de mudança de número
+    setTimeout(() => {
+      this.number = 2;
+    }, 4000);
+  }
+}
