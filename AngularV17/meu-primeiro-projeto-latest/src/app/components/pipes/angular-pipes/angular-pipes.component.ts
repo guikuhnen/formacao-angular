@@ -11,7 +11,7 @@ import {
 } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { Observable, of, delay } from 'rxjs';
-import { CustomStringPipe } from '../../../pipes/custom-string.pipe';
+import { CustomStringPipe } from '@pipes/custom-string.pipe';
 
 @Component({
   selector: 'app-angular-pipes',

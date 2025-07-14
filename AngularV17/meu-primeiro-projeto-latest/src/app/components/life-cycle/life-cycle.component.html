@@ -1,5 +1,8 @@
-<h2>Lyfe Cycle</h2>
+<h2 #content>Lyfe Cycle</h2>
 <p>
-  {{ myText() }}
+  {{ myText() }} - {{ myNumber() }}
 </p>
 <button (click)="myText.set('Guilherme Kuhnen')">New Text</button>
+<hr>
+
+<ng-content></ng-content>
