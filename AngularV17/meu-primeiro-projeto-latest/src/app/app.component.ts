@@ -15,6 +15,7 @@ import { ReactiveFormsComponent } from '@components/forms/reactive-forms/reactiv
 import { ContentComponent } from '@components/content/content.component';
 import { HostElementsComponent } from '@components/host-elements/host-elements.component';
 import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -73,6 +74,11 @@ import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
+
+  constructor() {
+    console.log(environment.env);
+  }
+
   // public number: number = 1;
   public number = signal(1);
   public boolean: boolean = true;
@@ -85,12 +91,12 @@ export class AppComponent implements OnInit {
     //  this.number = 2;
     //}, 4000);
 
-    setInterval(() => {
-      this.number.update(
-        (oldValue) => {
-          return oldValue + 1;
-        }
-      );
-    }, 1000);
+    //setInterval(() => {
+    //  this.number.update(
+    //    (oldValue) => {
+    //      return oldValue + 1;
+    //    }
+    //  );
+    //}, 1000);
   }
 }
