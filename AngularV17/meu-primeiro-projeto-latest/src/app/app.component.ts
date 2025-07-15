@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 // Components
@@ -16,6 +21,7 @@ import { ContentComponent } from '@components/content/content.component';
 import { HostElementsComponent } from '@components/host-elements/host-elements.component';
 import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component';
 import { environment } from 'environments/environment';
+import { ConsumeServiceComponent } from '@components/consume-service/consume-service.component';
 
 @Component({
   selector: 'app-root',
@@ -35,6 +41,7 @@ import { environment } from 'environments/environment';
     ContentComponent,
     HostElementsComponent,
     LifeCycleComponent,
+    ConsumeServiceComponent
   ],
   template: `
     <!-- <router-outlet /> -->
@@ -62,21 +69,20 @@ import { environment } from 'environments/environment';
       </footer>
     </app-content> -->
     <!-- <app-host-elements /> -->
-    @if (boolean) {
+    <!-- @if (boolean) { -->
     <!-- <app-life-cycle [myNumber]="number"> -->
-    <app-life-cycle [inputMyNumber]="number()">
+    <!-- <app-life-cycle [inputMyNumber]="number()">
       <p #text>Conteúdo do componente</p>
-    </app-life-cycle>
-    }
-
-    <button (click)="boolean = !boolean">Destroy Component</button>
+    </app-life-cycle> -->
+    <!-- } -->
+    <!-- <button (click)="boolean = !boolean">Destroy Component</button> -->
+    <app-consume-service />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-
   constructor() {
-    console.log(environment.env);
+    // console.log(environment.env);
   }
 
   // public number: number = 1;
@@ -90,7 +96,6 @@ export class AppComponent implements OnInit {
     //setTimeout(() => {
     //  this.number = 2;
     //}, 4000);
-
     //setInterval(() => {
     //  this.number.update(
     //    (oldValue) => {
