@@ -1,2 +1,42 @@
 <h2>Services</h2>
-<app-new-component />
+<!-- <app-new-component /> -->
+<!-- <ul>
+  @for (item of getTask(); track item.id) {
+  <li>{{ item.id }} - {{ item.title }}</li>
+  } @empty {
+  <li>Não existem dados!</li>
+  }
+</ul> -->
+
+<!-- {{ getTask$ | async | json }} -->
+<!-- <ul>
+  @for (item of getTask$ | async; track item.id) {
+  <li>{{ item.id }} - {{ item.title }}</li>
+  } @empty {
+  <li>Não existem dados!</li>
+  }
+</ul> -->
+
+<!-- <ul>
+  @for (item of getTask$(); track item.id) {
+  <li>{{ item.id }} - {{ item.title }}</li>
+  } @empty {
+  <li>Não existem dados!</li>
+  }
+</ul> -->
+
+<h3>List Tasks</h3>
+<ul>
+  @if (getListTask(); as data) { @for (item of data; track item.id) {
+  <li>{{ item.id }} - {{ item.title }}</li>
+  } @empty {
+  <li>Não existem dados!</li>
+  } } @else {
+  <li>Carregando...</li>
+  }
+</ul>
+
+<h3>Task ID</h3>
+@if (getTaskId(); as data) {
+    <p>{{ data.id }} - {{ data.title }}</p>
+}
