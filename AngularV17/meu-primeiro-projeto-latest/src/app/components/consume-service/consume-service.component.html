@@ -27,16 +27,45 @@
 
 <h3>List Tasks</h3>
 <ul>
-  @if (getListTask(); as data) { @for (item of data; track item.id) {
-  <li>{{ item.id }} - {{ item.title }}</li>
+  @if (getTaskList(); as data) { @for (item of data; track item.id) {
+  <li>
+    {{ item.id }} - {{ item.title }} -
+    <button (click)="httpTaskDelete(item.id)">Delete</button>
+  </li>
   } @empty {
   <li>Não existem dados!</li>
   } } @else {
   <li>Carregando...</li>
   }
 </ul>
+@if (getTaskListError() || getTaskDeleteError(); as error) {
+<p>{{ error }}</p>
+}
 
 <h3>Task ID</h3>
-@if (getTaskId(); as data) {
-    <p>{{ data.id }} - {{ data.title }}</p>
+<input type="text" #taskId placeholder="Enter task ID" />
+<button (click)="httpTaskId(taskId.value)">Get Task</button>
+<p>
+  @if (getTaskId(); as data) {
+  {{ data.id }} - {{ data.title }}
+  } @else {
+  {{ getTaskIdError() }}
+  }
+</p>
+
+<h3>Task Create</h3>
+<input type="text" #createTitle placeholder="Enter task title" />
+<button (click)="httpTaskCreate(createTitle.value)">Create Task</button>
+@if (getTaskCreateError(); as error) {
+<p>{{ error }}</p>
+}
+
+<h3>Task Update</h3>
+<input type="text" #updateId placeholder="Enter task ID" />
+<input type="text" #updateTitle placeholder="Enter task title" />
+<button (click)="httpTaskUpdate(updateId.value, updateTitle.value)">
+  Update Task
+</button>
+@if (getTaskUpdateError(); as error) {
+<p>{{ error }}</p>
 }
