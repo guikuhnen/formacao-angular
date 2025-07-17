@@ -1,11 +1,15 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from 'environments/environment';
 import {
   BehaviorSubject,
   catchError,
   Observable,
-  shareReplay,
   tap,
   throwError,
 } from 'rxjs';
@@ -48,8 +52,12 @@ export class ApiService {
     this.#setTaskList.set(null);
     this.#setTaskListError.set(null);
 
-    return this.#http.get<ITask[]>(this.#url()).pipe(
-      shareReplay(),
+    const headers = new HttpHeaders().set('x-test-header', 'test-value');
+    const params = new HttpParams()
+      .set('page', '2')
+      .set('previous_page', '1');
+
+    return this.#http.get<ITask[]>(this.#url(), { headers, params }).pipe(
       tap((res) => {
         this.#setTaskList.set(
           res.sort((a, b) => a.title.localeCompare(b.title))
@@ -76,7 +84,6 @@ export class ApiService {
     this.#setTaskIdError.set(null);
 
     return this.#http.get<ITask>(`${this.#url()}/${id}`).pipe(
-      shareReplay(),
       tap((res) => {
         this.#setTaskId.set(res);
       }),
@@ -96,7 +103,6 @@ export class ApiService {
     this.#setTaskCreateError.set(null);
 
     return this.#http.post<ITask>(this.#url(), { title }).pipe(
-      shareReplay(),
       catchError((error: HttpErrorResponse) => {
         this.#setTaskCreateError.set(error.error.message);
         return throwError(() => error);
@@ -113,7 +119,6 @@ export class ApiService {
     this.#setTaskUpdateError.set(null);
 
     return this.#http.patch<ITask>(`${this.#url()}/${id}`, { title }).pipe(
-      shareReplay(),
       catchError((error: HttpErrorResponse) => {
         this.#setTaskUpdateError.set(error.error.message);
         return throwError(() => error);
@@ -128,13 +133,12 @@ export class ApiService {
   }
   public httpTaskDelete$(id: string): Observable<void> {
     this.#setTaskDeleteError.set(null);
-    
-    return this.#http
-      .delete<void>(`${this.#url()}/${id}`, {})
-      .pipe(shareReplay(),
+
+    return this.#http.delete<void>(`${this.#url()}/${id}`, {}).pipe(
       catchError((error: HttpErrorResponse) => {
         this.#setTaskDeleteError.set(error.error.message);
         return throwError(() => error);
-      }));
+      })
+    );
   }
 }
