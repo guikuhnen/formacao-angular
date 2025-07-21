@@ -27,7 +27,7 @@ import { ConsumeServiceComponent } from '@components/consume-service/consume-ser
   selector: 'app-root',
   standalone: true,
   imports: [
-    // RouterOutlet,
+    RouterOutlet,
     // NewComponent,
     // TemplateBindingComponent,
     // TemplateVariablesComponent,
@@ -41,10 +41,9 @@ import { ConsumeServiceComponent } from '@components/consume-service/consume-ser
     // ContentComponent,
     // HostElementsComponent,
     // LifeCycleComponent,
-    ConsumeServiceComponent
+    // ConsumeServiceComponent,
   ],
   template: `
-    <!-- <router-outlet /> -->
     <h1>Curso de Angular</h1>
     <!-- <div class="theme-dark">
       <app-new-component />
@@ -76,7 +75,11 @@ import { ConsumeServiceComponent } from '@components/consume-service/consume-ser
     </app-life-cycle> -->
     <!-- } -->
     <!-- <button (click)="boolean = !boolean">Destroy Component</button> -->
-    <app-consume-service />
+    <h2>Rotas</h2>
+    <a href="/">Home</a>
+    <hr>
+    <!-- <app-consume-service /> -->
+    <router-outlet />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

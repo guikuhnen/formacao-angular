@@ -6,7 +6,7 @@ import {
   LOCALE_ID,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withRouterConfig } from '@angular/router';
 import { routes } from './app.routes';
 import { httpInterceptor } from './interceptor/http.interceptor';
 registerLocaleData(LocalePt);
@@ -14,7 +14,7 @@ registerLocaleData(LocalePt);
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding(), withRouterConfig({paramsInheritanceStrategy: 'always'})),
     provideHttpClient(withInterceptors([httpInterceptor])),
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
