@@ -76,7 +76,7 @@ import { ConsumeServiceComponent } from '@components/consume-service/consume-ser
     <!-- } -->
     <!-- <button (click)="boolean = !boolean">Destroy Component</button> -->
     <h2>Rotas</h2>
-    <a href="/">Home</a>
+    <a href="/curso">Home</a>
     <hr>
     <!-- <app-consume-service /> -->
     <router-outlet />

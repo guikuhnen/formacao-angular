@@ -6,7 +6,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-servicos-prestados',
@@ -16,19 +16,36 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './servicos-prestados.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ServicosPrestadosComponent implements OnInit {
+export default class ServicosPrestadosComponent implements OnInit {
   #route = inject(ActivatedRoute);
+  #router = inject(Router);
 
+  // Método 3
   public getId = signal<null | string>(null);
   @Input() set id(value: string) {
     this.getId.set(value);
   }
 
   ngOnInit(): void {
+    // Método 1
     console.log('snapshot: ' + this.#route.snapshot.params['id']);
 
+    // Método 2
     this.#route.params.subscribe((params) => {
       console.log(params);
     });
+
+    console.log(this.#route.snapshot.queryParamMap.get('name'));
+    console.log(this.#route.snapshot.queryParamMap.get('age'));
+
+    // Router
+    setTimeout(() => {
+      this.#router.navigate(['/curso'], {
+        queryParams: {
+          name: 'João',
+          age: 30,
+        }
+      });
+    }, 3000);
   }
 }

@@ -1,8 +1,29 @@
-<a [routerLink]="['']" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
+<a
+  [routerLink]="['/curso']"
+  routerLinkActive="active"
+  ariaCurrentWhenActive="page"
+  >Home</a
+>
 <br />
-<a [routerLink]="['sobre']" routerLinkActive="active" ariaCurrentWhenActive="page">Sobre</a>
+<a
+  [routerLink]="['sobre']"
+  routerLinkActive="active"
+  ariaCurrentWhenActive="page"
+  >Sobre</a
+>
 <br />
-<a [routerLink]="['servicos', 1]" routerLinkActive="active" ariaCurrentWhenActive="page">Serviços</a>
+<a
+  [routerLink]="['servicos', 1]"
+  routerLinkActive="active"
+  ariaCurrentWhenActive="page"
+  [queryParams]="{ name: 'xpto', age: 33 }"
+  >Serviços</a
+>
 
 <br />
-<a [routerLink]="['naoExiste', ]" routerLinkActive="active" ariaCurrentWhenActive="page">Not Found</a>
+<a
+  [routerLink]="['naoExiste']"
+  routerLinkActive="active"
+  ariaCurrentWhenActive="page"
+  >Not Found</a
+>
