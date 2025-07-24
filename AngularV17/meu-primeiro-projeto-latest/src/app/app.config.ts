@@ -9,6 +9,7 @@ import {
 import { provideRouter, withComponentInputBinding, withRouterConfig } from '@angular/router';
 import { routes } from './app.routes';
 import { httpInterceptor } from './interceptor/http.interceptor';
+import { provideTranslate } from './app.translate';
 registerLocaleData(LocalePt);
 
 export const appConfig: ApplicationConfig = {
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding(), withRouterConfig({paramsInheritanceStrategy: 'always'})),
     provideHttpClient(withInterceptors([httpInterceptor])),
+    provideTranslate(),
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 };

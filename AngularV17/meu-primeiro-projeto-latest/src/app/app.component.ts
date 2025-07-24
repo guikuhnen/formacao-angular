@@ -22,12 +22,13 @@ import { HostElementsComponent } from '@components/host-elements/host-elements.c
 import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component';
 import { environment } from 'environments/environment';
 import { ConsumeServiceComponent } from '@components/consume-service/consume-service.component';
+import { TranslateComponent } from '@components/translate/translate.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet,
+    // RouterOutlet,
     // NewComponent,
     // TemplateBindingComponent,
     // TemplateVariablesComponent,
@@ -42,6 +43,7 @@ import { ConsumeServiceComponent } from '@components/consume-service/consume-ser
     // HostElementsComponent,
     // LifeCycleComponent,
     // ConsumeServiceComponent,
+    TranslateComponent,
   ],
   template: `
     <h1>Curso de Angular</h1>
@@ -75,11 +77,12 @@ import { ConsumeServiceComponent } from '@components/consume-service/consume-ser
     </app-life-cycle> -->
     <!-- } -->
     <!-- <button (click)="boolean = !boolean">Destroy Component</button> -->
-    <h2>Rotas</h2>
+    <!-- <app-consume-service /> -->
+    <!-- <h2>Rotas</h2>
     <a href="/curso">Home</a>
     <hr>
-    <!-- <app-consume-service /> -->
-    <router-outlet />
+    <router-outlet /> -->
+  <app-translate />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
