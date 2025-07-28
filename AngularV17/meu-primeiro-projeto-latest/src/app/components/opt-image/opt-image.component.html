@@ -1,0 +1,23 @@
+<h2>Otimização de imagem</h2>
+
+<!-- ngSrcset="100w, 200w, 300w" -->
+<img
+  ngSrc="capa.jpg"
+  width="400"
+  height="250"
+  alt="Imagem 1"
+  priority
+  disableOptimizedSrcset
+/>
+<div style="position: relative; width: 250px; height: 400px; background: red">
+  abc
+  <!-- ngSrcset="100w, 200w, 300w" -->
+  <img
+    ngSrc="capa.jpg"
+    alt="Imagem 1"
+    style="object-fit: cover"
+    fill
+    priority
+    disableOptimizedSrcset
+  />
+</div>

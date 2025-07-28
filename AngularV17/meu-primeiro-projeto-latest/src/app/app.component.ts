@@ -23,6 +23,7 @@ import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component'
 import { environment } from 'environments/environment';
 import { ConsumeServiceComponent } from '@components/consume-service/consume-service.component';
 import { TranslateComponent } from '@components/translate/translate.component';
+import { OptImageComponent } from '@components/opt-image/opt-image.component';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +44,8 @@ import { TranslateComponent } from '@components/translate/translate.component';
     // HostElementsComponent,
     // LifeCycleComponent,
     // ConsumeServiceComponent,
-    TranslateComponent,
+    // TranslateComponent,
+    OptImageComponent,
   ],
   template: `
     <h1>Curso de Angular</h1>
@@ -81,8 +83,9 @@ import { TranslateComponent } from '@components/translate/translate.component';
     <!-- <h2>Rotas</h2>
     <a href="/curso">Home</a>
     <hr>
-    <router-outlet /> -->
-  <app-translate />
+    <router-outlet />
+    <app-translate /> -->
+    <app-opt-image />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
