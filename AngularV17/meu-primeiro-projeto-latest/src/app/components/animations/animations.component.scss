@@ -1,0 +1,19 @@
+:host {
+  .ball {
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+    border-radius: 100%;
+    position: relative;
+    // opacity: 0;
+
+    &::after {
+      content: '';
+      border-left: 2px solid white;
+      display: block;
+      height: 50%;
+      width: 100px;
+      transform: translate(50%, 0);
+    }
+  }
+}

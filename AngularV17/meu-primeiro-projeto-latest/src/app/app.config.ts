@@ -20,6 +20,7 @@ import { environment } from 'environments/environment';
 import { routes } from './app.routes';
 import { provideTranslate } from './app.translate';
 import { httpInterceptor } from './interceptor/http.interceptor';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 registerLocaleData(LocalePt);
 
 export const appConfig: ApplicationConfig = {
@@ -33,17 +34,18 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([httpInterceptor])),
     provideTranslate(),
     // provideImgixLoader(environment.img),
-    {
-      provide: IMAGE_LOADER,
-      useValue: (config: ImageLoaderConfig) => {
-        const img = config.src.split('.');
-        const name = img.shift();
-        const width = config.width ? '-' + config.width + 'w' : '';
-        const type = img.pop();
-
-        return `${environment.img}${name}${width}.${type}`;
-      },
-    },
+    //{
+    //  provide: IMAGE_LOADER,
+    //  useValue: (config: ImageLoaderConfig) => {
+    //    const img = config.src.split('.');
+    //    const name = img.shift();
+    //    const width = config.width ? '-' + config.width + 'w' : '';
+    //    const type = img.pop();
+//
+    //    return `${environment.img}${name}${width}.${type}`;
+    //  },
+    //},
+    provideAnimationsAsync(),
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 };

@@ -24,6 +24,7 @@ import { environment } from 'environments/environment';
 import { ConsumeServiceComponent } from '@components/consume-service/consume-service.component';
 import { TranslateComponent } from '@components/translate/translate.component';
 import { OptImageComponent } from '@components/opt-image/opt-image.component';
+import { AnimationsComponent } from '@components/animations/animations.component';
 
 @Component({
   selector: 'app-root',
@@ -45,7 +46,8 @@ import { OptImageComponent } from '@components/opt-image/opt-image.component';
     // LifeCycleComponent,
     // ConsumeServiceComponent,
     // TranslateComponent,
-    OptImageComponent,
+    // OptImageComponent,
+    AnimationsComponent
   ],
   template: `
     <h1>Curso de Angular</h1>
@@ -85,7 +87,8 @@ import { OptImageComponent } from '@components/opt-image/opt-image.component';
     <hr>
     <router-outlet />
     <app-translate /> -->
-    <app-opt-image />
+    <!-- <app-opt-image /> -->
+     <app-animations />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -95,8 +98,8 @@ export class AppComponent implements OnInit {
   }
 
   // public number: number = 1;
-  public number = signal(1);
-  public boolean: boolean = true;
+  // public number = signal(1);
+  // public boolean: boolean = true;
 
   //3 - Verifica se entrou dados primeiro, depois inicializa
   ngOnInit(): void {

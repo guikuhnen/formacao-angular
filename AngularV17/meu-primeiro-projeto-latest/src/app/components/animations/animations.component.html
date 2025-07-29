@@ -1,0 +1,8 @@
+<h2>Animations</h2>
+
+@if (moveIn() == 'move-right') {
+  <div class="ball" [@move-ball]="moveIn()"></div>
+}
+<br />
+<button (click)="moveIn.set('move-left')">Move Left</button>
+<button (click)="moveIn.set('move-right')">Move Right</button>
