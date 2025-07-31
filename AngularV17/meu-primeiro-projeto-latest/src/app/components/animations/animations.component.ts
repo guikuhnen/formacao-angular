@@ -1,6 +1,10 @@
 import {
   animate,
+  group,
   keyframes,
+  query,
+  sequence,
+  stagger,
   state,
   style,
   transition,
@@ -8,6 +12,7 @@ import {
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { listItemsAnimation } from 'app/animations/list-items.animation';
 
 @Component({
   selector: 'app-animations',
@@ -79,9 +84,38 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
       // transition('move-right => move-left', animate('1s')),
     ]),
     // trigger('', []),
+    listItemsAnimation(),
   ],
 })
 export class AnimationsComponent {
   // public moveIn = signal('move-left');
   public moveIn = signal('');
+  public listItems = signal([
+    {
+      name: 'Item 1',
+    },
+    {
+      name: 'Item 2',
+    },
+    {
+      name: 'Item 3',
+    },
+    {
+      name: 'Item 4',
+    },
+    {
+      name: 'Item 5',
+    },
+  ]);
+
+  public deleteItem(index: number): void {
+    this.listItems().splice(index, 1);
+  }
+
+  public addNewItem(): void {
+    this.listItems.update((items) => [
+      ...items,
+      { name: `Item ${items.length + 1}` },
+    ]);
+  }
 }
